@@ -9,6 +9,10 @@
     min-height: 1000px;
 }
 
+.hide {
+    visibility: hidden;
+}
+
 .left {
     text-align: left;
 }

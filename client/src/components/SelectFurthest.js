@@ -1,15 +1,15 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import axios from "axios";
 
 // TODO: display 4 seasons as accordions,
 // can select to expand & then select the ep
-// TODO: toggle show/hide descriptions
 
 class SelectFurthest extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { episodes: null };
+        this.state = { episodes: null, showIds: [] };
     }
 
     async componentDidMount() {
@@ -19,6 +19,19 @@ class SelectFurthest extends Component {
         });
 
         this.setState({ episodes: res.data });
+    }
+
+    toggleDesc({ epId }) {
+        const { showIds } = this.state;
+        const shown = showIds.includes(epId);
+        if (shown) {
+            const index = _.indexOf(showIds, epId);
+            showIds.splice(index, 1);
+        } else {
+            showIds.push(epId);
+        }
+
+        this.setState({ showIds });
     }
 
     renderEpisodes() {
@@ -31,7 +44,7 @@ class SelectFurthest extends Component {
         for (let season of seasons) {
             let ep = 0;
             epUI.push(
-                <div>
+                <div key={season}>
                     <h3 className="left">Season {season}</h3>
                     <table>
                         <thead>
@@ -44,9 +57,10 @@ class SelectFurthest extends Component {
                         <tbody>
                             {episodes[season].map(
                                 ({ title, subtitle, desc }) => {
+                                    const epId = `s${season}e${ep}`;
                                     ep++;
                                     return (
-                                        <tr>
+                                        <tr key={epId}>
                                             <td>{ep}</td>
                                             <td>
                                                 {title}
@@ -54,7 +68,24 @@ class SelectFurthest extends Component {
                                                     ? `: ${subtitle}`
                                                     : null}
                                             </td>
-                                            <td>{desc}</td>
+                                            <td
+                                                onClick={() =>
+                                                    this.toggleDesc({ epId })
+                                                }
+                                            >
+                                                <span
+                                                    id={epId}
+                                                    className={
+                                                        !this.state.showIds.includes(
+                                                            epId
+                                                        )
+                                                            ? "hide"
+                                                            : null
+                                                    }
+                                                >
+                                                    {desc}
+                                                </span>
+                                            </td>
                                         </tr>
                                     );
                                 }
