@@ -1,4 +1,5 @@
 client/node_modules
+client/.eslintcache
 
 server/secrets.js
 server/node_modules
