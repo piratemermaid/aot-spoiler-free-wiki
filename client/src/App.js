@@ -9,11 +9,14 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { furthest: { season: null, episode: null } };
+        this.state = { furthest: null };
     }
 
     async componentDidMount() {
-        //
+        const furthest = localStorage.getItem("aot_furthest");
+        if (furthest) {
+            this.setState({ furthest });
+        }
     }
 
     render() {
