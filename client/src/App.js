@@ -9,13 +9,19 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { furthest: null };
+        this.state = { furthest: null, nightMode: true };
     }
 
     async componentDidMount() {
         const furthest = localStorage.getItem("aot_furthest");
         if (furthest) {
             this.setState({ furthest });
+        }
+
+        const { nightMode } = this.state;
+
+        if (nightMode) {
+            document.getElementById("root").classList.add("night-mode");
         }
     }
 
