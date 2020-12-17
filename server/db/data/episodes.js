@@ -1,6 +1,6 @@
 // 1-4 are the seasons
 
-module.exports = [
+const episodes = [
     [
         {
             title: "To You, in 2000 Years",
@@ -71,16 +71,48 @@ module.exports = [
         },
         {
             title: "Special Operations Squad",
-            subtitle: "",
-            desc: "Eve of the Counterattack, Part 2"
+            subtitle: "Eve of the Counterattack, Part 2",
+            desc: ""
         },
         {
             title: "What Needs to be Done Now",
-            subtitle: "",
-            desc: "Eve of the Counterattack, Part 3"
+            subtitle: "Eve of the Counterattack, Part 3",
+            desc: ""
         }
         // { title: "", subtitle: "", desc: "" },
         // { title: "", subtitle: "", desc: "" },
         // { title: "", subtitle: "", desc: "" }
+    ],
+    [
+        { title: "s2e1", subtitle: "s2e1", desc: "" },
+        { title: "s2e2", subtitle: "s2e2", desc: "" },
+        { title: "s2e3", subtitle: "s2e3", desc: "" }
+    ],
+    [
+        { title: "s3e1", subtitle: "s3e1", desc: "" },
+        { title: "s3e2", subtitle: "s3e2", desc: "" },
+        { title: "s3e3", subtitle: "s3e3", desc: "" }
     ]
 ];
+
+let formattedEpisodes = [];
+
+let seasonNum = 0;
+for (let season of episodes) {
+    seasonNum++;
+    let episodeNum = 0;
+
+    for (let episode of season) {
+        episodeNum++;
+        const { title, subtitle, desc } = episode;
+        formattedEpisodes.push({
+            season: seasonNum,
+            episode: episodeNum,
+            title,
+            subtitle,
+            desc
+        });
+    }
+}
+
+module.exports = formattedEpisodes;
