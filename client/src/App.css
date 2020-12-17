@@ -8,3 +8,16 @@
     /* TODO: make background go to bottom of page */
     min-height: 1000px;
 }
+
+.left {
+    text-align: left;
+}
+
+table {
+    text-align: left;
+    border: 1px solid gray;
+}
+td {
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+}

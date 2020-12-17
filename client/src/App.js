@@ -9,7 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { furthest: null, nightMode: true };
+        this.state = { furthest: null, nightMode: false };
     }
 
     async componentDidMount() {

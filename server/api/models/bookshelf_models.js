@@ -1,7 +1,7 @@
 const { bookshelf } = require("./config");
 
-const Info = bookshelf.model("Info", {
-    tableName: "info"
+const Episode = bookshelf.model("Episode", {
+    tableName: "episodes"
 });
 
-module.exports = { Info };
+module.exports = { Episode };
